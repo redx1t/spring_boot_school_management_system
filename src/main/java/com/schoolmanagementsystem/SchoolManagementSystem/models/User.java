@@ -9,6 +9,8 @@ import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Data
@@ -31,14 +33,17 @@ public class User {
     private String password;
     private String gender;
     private LocalDate dob;
+    private Boolean isActive;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
+@ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles = new ArrayList<>();
 
     @Transient
 
     private Integer age;
 
-    public User(String first_name, String second_name, String email, String phone, String password, String gender, LocalDate dob, LocalDateTime created_at, LocalDateTime updated_at) {
+    public User(String first_name, String second_name, String email, String phone, String password, String gender, LocalDate dob, Boolean isActive,LocalDateTime created_at, LocalDateTime updated_at) {
         this.first_name = first_name;
         this.second_name = second_name;
         this.email = email;

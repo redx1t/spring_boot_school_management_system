@@ -22,7 +22,9 @@ public class UserConfig {
                     "phone",
                     "admin@123",
                     "gender",
+
                     LocalDate.of(2000, Month.JANUARY, 20),
+                    true,
                     LocalDateTime.now(),
                     LocalDateTime.now()
             );
