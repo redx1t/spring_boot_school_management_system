@@ -14,7 +14,7 @@ import java.time.Period;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "roles")
+@Table(name = "table_roles")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,6 +22,5 @@ public class Role {
     @Column(unique = true)
     @NotEmpty(message = "Name cannot be empty")
     private String name;
-    private LocalDateTime created_at;
     private LocalDateTime updated_at;
 }

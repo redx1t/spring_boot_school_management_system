@@ -1,7 +1,9 @@
 package com.schoolmanagementsystem.SchoolManagementSystem.configs;
 
+import com.schoolmanagementsystem.SchoolManagementSystem.models.Role;
 import com.schoolmanagementsystem.SchoolManagementSystem.models.User;
 import com.schoolmanagementsystem.SchoolManagementSystem.repos.UserRepository;
+import com.schoolmanagementsystem.SchoolManagementSystem.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,22 +15,72 @@ import java.time.Month;
 @Configuration
 public class UserConfig {
     @Bean
-    CommandLineRunner commandLineRunner(UserRepository repository){
+    CommandLineRunner commandLineRunner(UserService userService){
         return args -> {
             User defaultAdmin = new User(
                     "admin",
                     "default",
                     "admin@admin.com",
-                    "phone",
+                    "0700000001",
                     "admin@123",
-                    "gender",
+                    "female",
 
                     LocalDate.of(2000, Month.JANUARY, 20),
                     true,
                     LocalDateTime.now(),
                     LocalDateTime.now()
             );
-            repository.save(defaultAdmin);
+            User defaultTeacher = new User(
+                    "teacher",
+                    "default",
+                    "teacher@admin.com",
+                    "0700000002",
+                    "admin@123",
+                    "female",
+
+                    LocalDate.of(1998, Month.JANUARY, 20),
+                    true,
+                    LocalDateTime.now(),
+                    LocalDateTime.now()
+            );
+            User defaultBursar = new User(
+                    "bursar",
+                    "default",
+                    "bursar@admin.com",
+                    "0700000003",
+                    "admin@123",
+                    "female",
+
+                    LocalDate.of(1988, Month.JANUARY, 20),
+                    true,
+                    LocalDateTime.now(),
+                    LocalDateTime.now()
+            );
+            User defaultParent = new User(
+                    "parent",
+                    "default",
+                    "parent@admin.com",
+                    "0700000004",
+                    "admin@123",
+                    "female",
+                    LocalDate.of(1978, Month.JANUARY, 20),
+                    true,
+                    LocalDateTime.now(),
+                    LocalDateTime.now()
+            );
+            userService.create(defaultAdmin);
+            userService.create(defaultTeacher);
+            userService.create(defaultBursar);
+            userService.create(defaultParent);
+            userService.createRole(new Role(null, "ROLE_ADMIN", LocalDateTime.now()));
+            userService.createRole(new Role(null, "ROLE_TEACHER", LocalDateTime.now()));
+            userService.createRole(new Role(null, "ROLE_BURSAR", LocalDateTime.now()));
+            userService.createRole(new Role(null, "ROLE_PARENT", LocalDateTime.now()));
+            userService.addRoleToUser("admin@admin.com", "ROLE_ADMIN");
+            userService.addRoleToUser("teacher@admin.com", "ROLE_TEACHER");
+            userService.addRoleToUser("bursar@admin.com", "ROLE_BURSAR");
+            userService.addRoleToUser("parent@admin.com", "ROLE_PARENT");
+
         };
     }
 }
