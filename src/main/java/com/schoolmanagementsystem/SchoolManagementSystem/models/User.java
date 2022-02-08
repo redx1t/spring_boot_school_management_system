@@ -24,6 +24,9 @@ public class User {
     private String first_name;
     private String second_name;
     @Column(unique = true)
+    @NotEmpty(message = "Username cannot be empty")
+
+    private String username;
     @NotEmpty(message = "Email cannot be empty")
     private String email;
     @Column(unique = true)
@@ -43,9 +46,10 @@ public class User {
 
     private Integer age;
 
-    public User(String first_name, String second_name, String email, String phone, String password, String gender, LocalDate dob, Boolean isActive,LocalDateTime created_at, LocalDateTime updated_at) {
+    public User(String first_name, String second_name, String username, String email, String phone, String password, String gender, LocalDate dob, Boolean isActive,LocalDateTime created_at, LocalDateTime updated_at) {
         this.first_name = first_name;
         this.second_name = second_name;
+        this.username = username;
         this.email = email;
         this.phone = phone;
         this.password = password;

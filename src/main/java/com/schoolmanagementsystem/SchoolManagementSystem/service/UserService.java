@@ -12,6 +12,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -29,9 +30,10 @@ import java.util.List;
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(username);
+        User user = userRepository.findByUsername(username);
         if (user == null){
             log.info("user not found");
             throw new UsernameNotFoundException("User not found");
@@ -40,7 +42,7 @@ public class UserService implements UserDetailsService {
         user.getRoles().forEach(role -> {
             authorities.add(new SimpleGrantedAuthority(role.getName()));
         });
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
     }
 
     public Collection<User> getUsers(int page) {
@@ -52,7 +54,15 @@ public class UserService implements UserDetailsService {
     public User getUserByEmail(String email){
         return  userRepository.findByEmail(email);
     }
+    public User getUserByUsername(String username){
+        return  userRepository.findByUsername(username);
+    }
     public User create(User user){
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
+    }
+    public User updateByOwner(User user){
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
     public User update(User user){
@@ -61,8 +71,8 @@ public class UserService implements UserDetailsService {
     public Role createRole(Role role){
         return roleRepository.save(role);
     }
-    public void addRoleToUser(String email, String name){
-        User user = userRepository.findByEmail(email);
+    public void addRoleToUser(String username, String name){
+        User user = userRepository.findByUsername(username);
         Role role = roleRepository.findByName(name);
         user.getRoles().add(role);
     }

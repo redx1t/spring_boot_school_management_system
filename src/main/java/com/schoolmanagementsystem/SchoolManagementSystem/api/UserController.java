@@ -1,8 +1,11 @@
 package com.schoolmanagementsystem.SchoolManagementSystem.api;
 
+import com.schoolmanagementsystem.SchoolManagementSystem.configs.RoleToUserForm;
 import com.schoolmanagementsystem.SchoolManagementSystem.models.Response;
+import com.schoolmanagementsystem.SchoolManagementSystem.models.Role;
 import com.schoolmanagementsystem.SchoolManagementSystem.models.User;
 import com.schoolmanagementsystem.SchoolManagementSystem.service.UserService;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,4 +49,29 @@ public class UserController {
                         .statusCode(HttpStatus.CREATED.value())
                         .build());
     }
+
+    @PostMapping(path = "/role/save")
+    public ResponseEntity<Response>createRole(@RequestBody Role role){
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timeStamp(LocalDateTime.now())
+                        .data(Map.of("role", userService.createRole(role)))
+                        .message("Role created")
+                        .status(HttpStatus.CREATED)
+                        .statusCode(HttpStatus.CREATED.value())
+                        .build());
+    }
+
+    @PostMapping(path = "/role/addtouser")
+    public ResponseEntity<?>addRoleToUser(@RequestBody RoleToUserForm form){
+        userService.addRoleToUser(form.getUsername(), form.getName());
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timeStamp(LocalDateTime.now())
+                        .message("Role Added")
+                        .status(HttpStatus.CREATED)
+                        .statusCode(HttpStatus.CREATED.value())
+                        .build());
+    }
+
 }
