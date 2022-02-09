@@ -17,6 +17,6 @@ public class Parent {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String address;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany()
     private Collection<Student> students = new ArrayList<>();;
 }

@@ -18,6 +18,6 @@ public class Staff {
     private String staff_id;
     private String designation;
     private String nationality;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
     private User user;
 }

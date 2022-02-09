@@ -20,8 +20,6 @@ public class Exam {
     private String start_time;
     private String end_time;
     private Boolean status;
-    @OneToOne(fetch = FetchType.EAGER)
-    private ExamType examType;
-    @OneToOne(fetch = FetchType.EAGER)
-    private Staff staff;
+    private Long examtype_id;
+    private Long staff_id;
 }

@@ -1,5 +1,25 @@
 BREAKDOWN OF SCHOOL MANAGEMENT SYSTEM
 
+HOW TO RUN
+
+BACKEND RESTFUL API - SPRING BOOT JAVA
+
+git pull into your working folder. 
+
+reload dependancies via maven, environment tested in: java 11 version
+
+make sure applications.properties has the right credetials for DB as well as the postgres version
+
+<!- I am using POSTGRES with a database called school_management_system -!!>
+
+run build from SchoolManagementSystemApplicationClass
+
+
+FRONT END - NEXT JS
+
+git pull from and follow the instruction. ensure that it runs on port 8080 on server side and port 3000 on the front end. You can configure both in the configs folder in the next js app or configure the cors on the security/securityconfig class
+
+
 MODELS - 
 
 1. User
@@ -122,6 +142,19 @@ Finance
     - fee_id
     - amount
     - balance
+
+
+Functions
+
+- addstudent
+- addparent
+- addstaff
+- addsubject
+- addgrade
+- addclass
+- addexamtype
+
+
 ### Things not implemented
 Secure token for algorithm encryption
 Brute force stop by checking number of unsuccessful login attempts

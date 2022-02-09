@@ -17,7 +17,7 @@ public class Subject {
     private String subject;
     private String abbreviation;
     private Boolean isActive;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
     private Grade grade;
 
 }

@@ -19,9 +19,9 @@ public class Fee {
     private String currency;
     private Boolean isActive;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
     private Session session;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    private Class aClass;
+    @OneToOne
+    private ClassRoom aClass;
 }

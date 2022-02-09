@@ -18,8 +18,7 @@ public class Attendance {
     private LocalDate date;
     private boolean status;
     private String remarks;
-    @OneToOne(fetch = FetchType.EAGER)
-    private Student student;
-    @OneToOne(fetch = FetchType.EAGER)
-    private Staff staff;
+    private Long student_id;
+    private Long classroom_id;
+    private Long staff_id;
 }

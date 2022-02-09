@@ -19,10 +19,10 @@ public class Schedule {
     private String start_time;
     private String end_time;
     private Boolean status;
-    @OneToOne(fetch = FetchType.EAGER)
-    private Class aClass;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
+    private ClassRoom aClass;
+    @OneToOne
     private Subject subject;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
     private Staff staff;
 }

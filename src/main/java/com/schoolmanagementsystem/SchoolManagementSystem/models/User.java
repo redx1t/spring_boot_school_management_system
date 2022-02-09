@@ -25,7 +25,6 @@ public class User {
     private String second_name;
     @Column(unique = true)
     @NotEmpty(message = "Username cannot be empty")
-
     private String username;
     @NotEmpty(message = "Email cannot be empty")
     private String email;

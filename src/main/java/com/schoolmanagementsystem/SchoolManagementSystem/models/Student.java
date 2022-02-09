@@ -25,10 +25,10 @@ public class Student {
     private String religion;
     @Column(unique = true)
     private String adm_no;
-    @OneToOne(fetch = FetchType.EAGER)
-    private Class aClass;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
+    private ClassRoom aClass;
+    @OneToOne
     private Parent parent;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany
     private Collection<ExamResult> examResults = new ArrayList<>();
 }

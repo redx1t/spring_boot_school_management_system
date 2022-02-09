@@ -16,10 +16,7 @@ public class ExamResult {
     private Long id;
     private String points;
     private String comments;
-    @OneToOne(fetch = FetchType.EAGER)
-    private Exam exam;
-    @OneToOne(fetch = FetchType.EAGER)
-    private Student student;
-    @OneToOne(fetch = FetchType.EAGER)
-    private Staff staff;
+    private Long exam_id;
+    private Long student_id;
+    private Long staff_id;
 }
