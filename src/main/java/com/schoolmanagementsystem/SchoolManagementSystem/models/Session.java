@@ -10,13 +10,11 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "settings")
-public class Setting {
+@Table(name = "school_sessions")
+public class Session {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String school_name;
-    private String school_slogan;
-    private String school_location;
-    private String school_phone;
-    private String school_email;
+    private String Year;
+    private String term;
+    private Boolean isActive;
 }

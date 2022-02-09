@@ -5,18 +5,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "settings")
-public class Setting {
+@Table(name = "parents")
+public class Parent {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String school_name;
-    private String school_slogan;
-    private String school_location;
-    private String school_phone;
-    private String school_email;
+    private String address;
+    @OneToMany(fetch = FetchType.EAGER)
+    private Collection<Student> students = new ArrayList<>();;
 }

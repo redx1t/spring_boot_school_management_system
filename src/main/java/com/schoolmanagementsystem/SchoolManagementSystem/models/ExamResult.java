@@ -10,13 +10,16 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "settings")
-public class Setting {
+@Table(name = "exams_results")
+public class ExamResult {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String school_name;
-    private String school_slogan;
-    private String school_location;
-    private String school_phone;
-    private String school_email;
+    private String points;
+    private String comments;
+    @OneToOne(fetch = FetchType.EAGER)
+    private Exam exam;
+    @OneToOne(fetch = FetchType.EAGER)
+    private Student student;
+    @OneToOne(fetch = FetchType.EAGER)
+    private Staff staff;
 }

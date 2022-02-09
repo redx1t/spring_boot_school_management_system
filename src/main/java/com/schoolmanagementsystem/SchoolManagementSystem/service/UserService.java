@@ -1,5 +1,9 @@
 package com.schoolmanagementsystem.SchoolManagementSystem.service;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.schoolmanagementsystem.SchoolManagementSystem.models.Role;
 import com.schoolmanagementsystem.SchoolManagementSystem.models.User;
 import com.schoolmanagementsystem.SchoolManagementSystem.repos.RoleRepository;
@@ -15,13 +19,17 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import static java.util.Arrays.stream;
 
 @Service
 @RequiredArgsConstructor
@@ -76,7 +84,12 @@ public class UserService implements UserDetailsService {
         Role role = roleRepository.findByName(name);
         user.getRoles().add(role);
     }
-
-
-
+    public String getUserByToken(HttpServletRequest request){
+        String token = request.getHeader("Authorization").substring("Bearer ".length());
+        Algorithm algorithm = Algorithm.HMAC256("!@()!#!()()!".getBytes(StandardCharsets.UTF_8));
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        DecodedJWT decodedJWT = verifier.verify(token);
+        String username = decodedJWT.getSubject();
+        return username;
+    }
 }
