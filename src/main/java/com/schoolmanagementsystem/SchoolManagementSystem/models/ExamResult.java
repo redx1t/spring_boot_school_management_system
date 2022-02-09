@@ -16,10 +16,20 @@ public class ExamResult {
     private Long id;
     private String points;
     private String comments;
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Exam exam;
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Student student;
     @OneToOne
     private Staff staff;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ExamResult )) return false;
+        return id != null && id.equals(((ExamResult) o).getId());
+    }
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

@@ -1,8 +1,10 @@
 package com.schoolmanagementsystem.SchoolManagementSystem.configs;
 
 import com.schoolmanagementsystem.SchoolManagementSystem.models.Role;
+import com.schoolmanagementsystem.SchoolManagementSystem.models.Student;
 import com.schoolmanagementsystem.SchoolManagementSystem.models.User;
 import com.schoolmanagementsystem.SchoolManagementSystem.repos.UserRepository;
+import com.schoolmanagementsystem.SchoolManagementSystem.service.ParentService;
 import com.schoolmanagementsystem.SchoolManagementSystem.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +19,7 @@ import java.time.Month;
 public class UserConfig {
 
     @Bean
-    CommandLineRunner commandLineRunner(UserService userService){
+    CommandLineRunner commandLineRunner(UserService userService, ParentService parentService){
         return args -> {
             User defaultAdmin = new User(
                     "admin",
@@ -71,6 +73,10 @@ public class UserConfig {
                     LocalDateTime.now(),
                     LocalDateTime.now()
             );
+
+
+
+            parentService.createStudent(new Student(), );
             userService.create(defaultAdmin);
             userService.create(defaultTeacher);
             userService.create(defaultBursar);

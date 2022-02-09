@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -20,8 +22,28 @@ public class Exam {
     private String start_time;
     private String end_time;
     private Boolean status;
-    @OneToOne
+    @ManyToOne
     private ExamType examType;
     @OneToOne
     private Staff staff;
+    @OneToMany
+    private Set<ExamResult> examResults = new HashSet<>();
+    public void addExamResult(ExamResult examResult){
+        examResults.add(examResult);
+        examResult.setExam(this);
+    }
+    public void removeExamResult(ExamResult examResult){
+        examResults.remove(examResult);
+        examResult.setExam(null);
+    }
+@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Exam )) return false;
+        return id != null && id.equals(((Exam) o).getId());
+    }
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

@@ -58,6 +58,7 @@ public class User {
         this.updated_at = updated_at;
     }
 
+
     public Integer getAge() {
         return Period.between(dob, LocalDate.now()).getYears();
     }

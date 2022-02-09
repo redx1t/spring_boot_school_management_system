@@ -8,6 +8,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -27,8 +29,28 @@ public class Student {
     private String adm_no;
     @OneToOne
     private ClassRoom aClass;
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Parent parent;
+
     @OneToMany
-    private Collection<ExamResult> examResults = new ArrayList<>();
+    private Set<ExamResult> examResults = new HashSet<>();
+    public void addExamResult(ExamResult examResult){
+        examResults.add(examResult);
+        examResult.setStudent(this);
+    }
+    public void removeBook(ExamResult examResult){
+        examResults.remove(examResult);
+        examResult.setStudent(null);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Student )) return false;
+        return id != null && id.equals(((Student) o).getId());
+    }
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

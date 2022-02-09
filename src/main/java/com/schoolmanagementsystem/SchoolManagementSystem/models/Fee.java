@@ -19,9 +19,20 @@ public class Fee {
     private String currency;
     private Boolean isActive;
 
-    @OneToOne
+    @ManyToOne
     private Session session;
 
-    @OneToOne
+    @ManyToOne
     private ClassRoom aClass;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Fee )) return false;
+        return id != null && id.equals(((Fee) o).getId());
+    }
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
