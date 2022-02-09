@@ -18,7 +18,11 @@ public class Attendance {
     private LocalDate date;
     private boolean status;
     private String remarks;
-    private Long student_id;
-    private Long classroom_id;
-    private Long staff_id;
+
+    @OneToOne
+    private Student student;
+    @OneToOne
+    private ClassRoom classRoom;
+    @OneToOne
+    private Staff staff;
 }

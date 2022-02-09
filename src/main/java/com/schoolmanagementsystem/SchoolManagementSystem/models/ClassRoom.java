@@ -17,7 +17,10 @@ public class ClassRoom {
     private String name;
     private String abbreviation;
     private Boolean isActive;
-    private Long grade_id;
-    private Long session_id;
-    private Long staff_id;
+    @OneToOne
+    private Grade grade;
+    @OneToOne
+    private Session session;
+    @OneToOne
+    private Staff staff;
 }

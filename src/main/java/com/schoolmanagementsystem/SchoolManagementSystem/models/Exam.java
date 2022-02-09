@@ -20,6 +20,8 @@ public class Exam {
     private String start_time;
     private String end_time;
     private Boolean status;
-    private Long examtype_id;
-    private Long staff_id;
+    @OneToOne
+    private ExamType examType;
+    @OneToOne
+    private Staff staff;
 }

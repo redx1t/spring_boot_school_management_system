@@ -16,7 +16,10 @@ public class ExamResult {
     private Long id;
     private String points;
     private String comments;
-    private Long exam_id;
-    private Long student_id;
-    private Long staff_id;
+    @OneToOne
+    private Exam exam;
+    @OneToOne
+    private Student student;
+    @OneToOne
+    private Staff staff;
 }
