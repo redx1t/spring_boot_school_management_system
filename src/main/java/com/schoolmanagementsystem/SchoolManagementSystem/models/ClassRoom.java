@@ -5,6 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -19,8 +23,28 @@ public class ClassRoom {
     private Boolean isActive;
     @OneToOne
     private Grade grade;
-    @OneToOne
+    @ManyToOne
     private Session session;
     @OneToOne
     private Staff staff;
+    @OneToMany
+    private Set<Schedule> schedules = new HashSet<>();
+    public void addSchedule(Schedule schedule){
+        schedules.add(schedule);
+        schedule.setAClass(this);
+    }
+    public void removeSchedule(Schedule schedule){
+        schedules.remove(schedule);
+        schedule.setAClass(null);
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ClassRoom )) return false;
+        return id != null && id.equals(((ClassRoom) o).getId());
+    }
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

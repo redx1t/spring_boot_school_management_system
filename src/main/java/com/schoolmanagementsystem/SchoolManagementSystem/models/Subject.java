@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -19,5 +21,15 @@ public class Subject {
     private Boolean isActive;
     @OneToOne
     private Grade grade;
+    @OneToMany
+    private Set<Schedule> schedules = new HashSet<>();
+    public void addSchedule(Schedule schedule){
+        schedules.add(schedule);
+        schedule.setSubject(this);
+    }
+    public void removeSchedule(Schedule schedule){
+        schedules.remove(schedule);
+        schedule.setSubject(null);
+    }
 
 }

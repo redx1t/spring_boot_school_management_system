@@ -76,7 +76,6 @@ public class UserConfig {
 
 
 
-            parentService.createStudent(new Student(), );
             userService.create(defaultAdmin);
             userService.create(defaultTeacher);
             userService.create(defaultBursar);

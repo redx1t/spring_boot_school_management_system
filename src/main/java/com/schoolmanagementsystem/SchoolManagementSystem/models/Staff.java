@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -20,4 +22,14 @@ public class Staff {
     private String nationality;
     @OneToOne
     private User user;
+    @OneToMany
+    private Set<Schedule> schedules = new HashSet<>();
+    public void addSchedule(Schedule schedule){
+        schedules.add(schedule);
+        schedule.setStaff(this);
+    }
+    public void removeSchedule(Schedule schedule){
+        schedules.remove(schedule);
+        schedule.setStaff(null);
+    }
 }

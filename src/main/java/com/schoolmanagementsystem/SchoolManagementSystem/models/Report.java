@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -17,6 +19,14 @@ public class Report {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String comments;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<ExamResult> examResults = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<ExamResult> examResults = new HashSet<>();
+    public void addExamResult(ExamResult examResult){
+        examResults.add(examResult);
+        examResult.setReport(this);
+    }
+    public void removeExamResult(ExamResult examResult){
+        examResults.remove(examResult);
+        examResult.setReport(null);
+    }
 }

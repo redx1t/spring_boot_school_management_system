@@ -19,10 +19,10 @@ public class Schedule {
     private String start_time;
     private String end_time;
     private Boolean status;
-    @OneToOne
+    @ManyToOne
     private ClassRoom aClass;
-    @OneToOne
+    @ManyToOne
     private Subject subject;
-    @OneToOne
+    @ManyToOne
     private Staff staff;
 }

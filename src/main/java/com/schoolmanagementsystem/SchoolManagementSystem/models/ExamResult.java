@@ -20,6 +20,9 @@ public class ExamResult {
     private Exam exam;
     @ManyToOne(fetch = FetchType.LAZY)
     private Student student;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Report report;
     @OneToOne
     private Staff staff;
     @Override
