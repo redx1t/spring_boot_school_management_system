@@ -19,4 +19,12 @@ public class Setting {
     private String school_location;
     private String school_phone;
     private String school_email;
+
+    public Setting(String school_name, String school_slogan, String school_location, String school_phone, String school_email) {
+        this.school_name = school_name;
+        this.school_slogan = school_slogan;
+        this.school_location = school_location;
+        this.school_phone = school_phone;
+        this.school_email = school_email;
+    }
 }

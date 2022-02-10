@@ -16,4 +16,9 @@ public class ExamType {
     private Long id;
     private String name;
     private String desc;
+
+    public ExamType(String name, String desc) {
+        this.name = name;
+        this.desc = desc;
+    }
 }

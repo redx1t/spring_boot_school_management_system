@@ -65,6 +65,19 @@ public class User {
         this.created_at = created_at;
         this.updated_at = updated_at;
     }
+    public User(String first_name, String second_name, String username, String email, String phone, String password, String gender, LocalDate dob, Boolean isActive) {
+        this.first_name = first_name;
+        this.second_name = second_name;
+        this.username = username;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+        this.gender = gender;
+        this.dob = dob;
+        this.created_at = LocalDateTime.now();
+        this.updated_at = LocalDateTime.now();
+    }
+
 
 
     public Integer getAge() {

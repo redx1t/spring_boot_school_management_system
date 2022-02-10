@@ -25,6 +25,22 @@ public class Fee {
     @ManyToOne
     private ClassRoom aClass;
 
+    public Fee(String fee_name, Integer amount, String currency, Boolean isActive, Session session, ClassRoom aClass) {
+        this.fee_name = fee_name;
+        this.amount = amount;
+        this.currency = currency;
+        this.isActive = isActive;
+        this.session = session;
+        this.aClass = aClass;
+    }
+
+    public Fee(String fee_name, Integer amount, String currency, Boolean isActive) {
+        this.fee_name = fee_name;
+        this.amount = amount;
+        this.currency = currency;
+        this.isActive = isActive;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

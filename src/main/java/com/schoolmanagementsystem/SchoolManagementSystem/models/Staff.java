@@ -22,4 +22,10 @@ public class Staff {
     private String nationality;
     @OneToOne
     private User user;
+
+    public Staff(String staff_id, String designation, String nationality) {
+        this.staff_id = staff_id;
+        this.designation = designation;
+        this.nationality = nationality;
+    }
 }

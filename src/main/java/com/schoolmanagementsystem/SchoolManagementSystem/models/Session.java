@@ -20,6 +20,12 @@ public class Session {
     private String term;
     private Boolean isActive;
 
+    public Session(String year, String term, Boolean isActive) {
+        Year = year;
+        this.term = term;
+        this.isActive = isActive;
+    }
+
     @OneToMany
     private Set<ClassRoom> classRooms = new HashSet<>();
 

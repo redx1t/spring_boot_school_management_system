@@ -25,4 +25,21 @@ public class Schedule {
     private Subject subject;
     @ManyToOne
     private Staff staff;
+
+    public Schedule(LocalDate date, String start_time, String end_time, Boolean status, ClassRoom aClass, Subject subject, Staff staff) {
+        this.date = date;
+        this.start_time = start_time;
+        this.end_time = end_time;
+        this.status = status;
+        this.aClass = aClass;
+        this.subject = subject;
+        this.staff = staff;
+    }
+
+    public Schedule(LocalDate date, String start_time, String end_time, Boolean status) {
+        this.date = date;
+        this.start_time = start_time;
+        this.end_time = end_time;
+        this.status = status;
+    }
 }

@@ -1,13 +1,8 @@
 package com.schoolmanagementsystem.SchoolManagementSystem.configs;
 
-import com.schoolmanagementsystem.SchoolManagementSystem.models.Parent;
-import com.schoolmanagementsystem.SchoolManagementSystem.models.Role;
-import com.schoolmanagementsystem.SchoolManagementSystem.models.Student;
-import com.schoolmanagementsystem.SchoolManagementSystem.models.User;
+import com.schoolmanagementsystem.SchoolManagementSystem.models.*;
 import com.schoolmanagementsystem.SchoolManagementSystem.repos.UserRepository;
-import com.schoolmanagementsystem.SchoolManagementSystem.service.ParentService;
-import com.schoolmanagementsystem.SchoolManagementSystem.service.StudentService;
-import com.schoolmanagementsystem.SchoolManagementSystem.service.UserService;
+import com.schoolmanagementsystem.SchoolManagementSystem.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +16,7 @@ import java.time.Month;
 public class UserConfig {
 
     @Bean
-    CommandLineRunner commandLineRunner(UserService userService, ParentService parentService, StudentService studentService){
+    CommandLineRunner commandLineRunner(AdminService adminService, TeacherService teacherService, UserService userService, ParentService parentService, StudentService studentService){
         return args -> {
             User defaultAdmin = new User(
                     "admin",
@@ -76,11 +71,8 @@ public class UserConfig {
                     LocalDateTime.now()
             );
 
-
-
-
             userService.create(defaultAdmin);
-            userService.create(defaultTeacher);
+            User userstaff = userService.create(defaultTeacher);
             userService.create(defaultBursar);
             Parent parent = parentService.saveParent(new Parent("address"), userService.create(defaultParent));
             Student student = studentService.createStudent(new Student("first_name", "second_name", LocalDate.of(2003, Month.AUGUST, 20), "kenyan", "male", "christian", "adm_no_123"));
@@ -93,7 +85,25 @@ public class UserConfig {
             userService.addRoleToUser("teacher1", "ROLE_TEACHER");
             userService.addRoleToUser("bursar1", "ROLE_BURSAR");
             userService.addRoleToUser("parent1", "ROLE_PARENT");
+            Staff staff = new Staff("staff_id", "teacher", "kenyan");
+            Staff newstaff = teacherService.createStaff(staff, userstaff);
 
+            Session session = adminService.addSession(new Session("2021", "1", true));
+            Grade grade = adminService.addGrade(new Grade("class 1", "class one description"));
+            ClassRoom classRoom = adminService.addClassRoom(new ClassRoom("name", "abbreviation", true, grade, session, newstaff));
+            ExamType examType = teacherService.addExamType(new ExamType("Start of Term", "Start of term exams"));
+            Exam exam = new Exam("2021 start of term", LocalDate.now(), LocalDateTime.now().toString(), LocalDateTime.now().toString(), true, examType, newstaff, classRoom);
+            Exam newexam = teacherService.addExam(exam);
+            teacherService.addExamResult(new ExamResult("60%", "comments", newexam, student, newstaff));
+            teacherService.addExamResult(new ExamResult("80%", "different comments", newexam, student, newstaff));
+            teacherService.addExamResult(new ExamResult("90%", "success comments", newexam, student, newstaff));
+            Fee fee = adminService.addFee(new Fee("First Time Fee", 12000, "Kes", true, session, classRoom));
+            Setting setting = adminService.addSetting(new Setting("default_school", "slogan", "location, sublocation", "0700100000", "schoolemail@school.com"));
+            Subject maths = adminService.addSubject(new Subject("Mathematics", "Math", true, grade));
+            Subject english = adminService.addSubject(new Subject("British English", "ENG", true, grade));
+            teacherService.addSchedule(new Schedule(LocalDate.now(), LocalDateTime.now().toString(), LocalDateTime.now().toString(), true, classRoom, maths, newstaff));
+            teacherService.addSchedule(new Schedule(LocalDate.now(), LocalDateTime.now().toString(), LocalDateTime.now().toString(), true, classRoom, english, newstaff));
+            teacherService.addAttendance(new Attendance(LocalDate.now(), true, "clean boy", student, classRoom, newstaff));
         };
     }
 }

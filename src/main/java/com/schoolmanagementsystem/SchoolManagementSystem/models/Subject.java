@@ -23,13 +23,17 @@ public class Subject {
     private Grade grade;
     @OneToMany
     private Set<Schedule> schedules = new HashSet<>();
-    public void addSchedule(Schedule schedule){
-        schedules.add(schedule);
-        schedule.setSubject(this);
-    }
-    public void removeSchedule(Schedule schedule){
-        schedules.remove(schedule);
-        schedule.setSubject(null);
+
+    public Subject(String subject, String abbreviation, Boolean isActive, Grade grade) {
+        this.subject = subject;
+        this.abbreviation = abbreviation;
+        this.isActive = isActive;
+        this.grade = grade;
     }
 
+    public Subject(String subject, String abbreviation, Boolean isActive) {
+        this.subject = subject;
+        this.abbreviation = abbreviation;
+        this.isActive = isActive;
+    }
 }

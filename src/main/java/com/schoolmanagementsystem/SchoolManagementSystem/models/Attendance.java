@@ -25,4 +25,19 @@ public class Attendance {
     private ClassRoom classRoom;
     @OneToOne
     private Staff staff;
+
+    public Attendance(LocalDate date, boolean status, String remarks, Student student, ClassRoom classRoom, Staff staff) {
+        this.date = date;
+        this.status = status;
+        this.remarks = remarks;
+        this.student = student;
+        this.classRoom = classRoom;
+        this.staff = staff;
+    }
+
+    public Attendance(LocalDate date, boolean status, String remarks) {
+        this.date = date;
+        this.status = status;
+        this.remarks = remarks;
+    }
 }

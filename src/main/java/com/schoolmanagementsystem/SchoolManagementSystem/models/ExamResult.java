@@ -22,11 +22,21 @@ public class ExamResult {
     private Exam exam;
     @ManyToOne(fetch = FetchType.LAZY)
     private Student student;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Report report;
     @ManyToOne(fetch = FetchType.LAZY)
     private Staff staff;
+
+    public ExamResult(String points, String comments, Exam exam, Student student, Staff staff) {
+        this.points = points;
+        this.comments = comments;
+        this.exam = exam;
+        this.student = student;
+        this.staff = staff;
+    }
+
+    public ExamResult(String points, String comments) {
+        this.points = points;
+        this.comments = comments;
+    }
 
     @Override
     public boolean equals(Object o) {

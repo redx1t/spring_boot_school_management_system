@@ -26,10 +26,31 @@ public class Exam {
     private ExamType examType;
     @OneToOne
     private Staff staff;
+    @ManyToOne
+    private ClassRoom classRoom;
     @OneToMany
     private Set<ExamResult> examResults = new HashSet<>();
 
-@Override
+    public Exam(String name, LocalDate start_date, String start_time, String end_time, Boolean status, ExamType examType, Staff staff, ClassRoom classRoom) {
+        this.name = name;
+        this.start_date = start_date;
+        this.start_time = start_time;
+        this.end_time = end_time;
+        this.status = status;
+        this.examType = examType;
+        this.staff = staff;
+        this.classRoom = classRoom;
+    }
+
+    public Exam(String name, LocalDate start_date, String start_time, String end_time, Boolean status) {
+        this.name = name;
+        this.start_date = start_date;
+        this.start_time = start_time;
+        this.end_time = end_time;
+        this.status = status;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Exam )) return false;

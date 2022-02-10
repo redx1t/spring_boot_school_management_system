@@ -16,4 +16,9 @@ public class Grade {
     private Long id;
     private String name;
     private String desc;
+
+    public Grade(String name, String desc) {
+        this.name = name;
+        this.desc = desc;
+    }
 }

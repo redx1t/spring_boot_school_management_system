@@ -30,6 +30,21 @@ public class ClassRoom {
     @OneToMany
     private Set<Schedule> schedules = new HashSet<>();
 
+    public ClassRoom(String name, String abbreviation, Boolean isActive, Grade grade, Session session, Staff staff) {
+        this.name = name;
+        this.abbreviation = abbreviation;
+        this.isActive = isActive;
+        this.grade = grade;
+        this.session = session;
+        this.staff = staff;
+    }
+
+    public ClassRoom(String name, String abbreviation, Boolean isActive) {
+        this.name = name;
+        this.abbreviation = abbreviation;
+        this.isActive = isActive;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
