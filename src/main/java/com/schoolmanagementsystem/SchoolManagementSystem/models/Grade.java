@@ -10,15 +10,15 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Grades")
+@Table(name = "student_grades")
 public class Grade {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String desc;
+    private String description;
 
     public Grade(String name, String desc) {
         this.name = name;
-        this.desc = desc;
+        this.description = desc;
     }
 }
