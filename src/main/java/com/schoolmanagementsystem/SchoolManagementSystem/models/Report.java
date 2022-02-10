@@ -21,12 +21,5 @@ public class Report {
     private String comments;
     @OneToMany(fetch = FetchType.EAGER)
     private Set<ExamResult> examResults = new HashSet<>();
-    public void addExamResult(ExamResult examResult){
-        examResults.add(examResult);
-        examResult.setReport(this);
-    }
-    public void removeExamResult(ExamResult examResult){
-        examResults.remove(examResult);
-        examResult.setReport(null);
-    }
+
 }

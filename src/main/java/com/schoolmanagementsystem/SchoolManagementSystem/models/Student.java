@@ -27,21 +27,24 @@ public class Student {
     private String religion;
     @Column(unique = true)
     private String adm_no;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private ClassRoom aClass;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Parent parent;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     private Set<ExamResult> examResults = new HashSet<>();
-    public void addExamResult(ExamResult examResult){
-        examResults.add(examResult);
-        examResult.setStudent(this);
+
+    public Student(String first_name, String last_name, LocalDate date, String nationality, String gender, String religion, String adm_no) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.date = date;
+        this.nationality = nationality;
+        this.gender = gender;
+        this.religion = religion;
+        this.adm_no = adm_no;
     }
-    public void removeBook(ExamResult examResult){
-        examResults.remove(examResult);
-        examResult.setStudent(null);
-    }
+
+
+    
 
     @Override
     public boolean equals(Object o) {

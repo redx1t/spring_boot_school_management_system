@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Data
@@ -23,8 +25,9 @@ public class ExamResult {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Report report;
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Staff staff;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

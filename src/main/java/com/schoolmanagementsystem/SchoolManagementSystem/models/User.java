@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -38,8 +40,14 @@ public class User {
     private Boolean isActive;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
-@ManyToMany(fetch = FetchType.EAGER)
-    private Collection<Role> roles = new ArrayList<>();
+    @OneToOne(fetch = FetchType.LAZY)
+        private Parent parent;
+
+    @OneToOne(fetch = FetchType.LAZY)
+        private Staff staff;
+
+        @ManyToMany(fetch = FetchType.EAGER)
+        private Collection<Role> roles = new ArrayList<>();
 
     @Transient
 

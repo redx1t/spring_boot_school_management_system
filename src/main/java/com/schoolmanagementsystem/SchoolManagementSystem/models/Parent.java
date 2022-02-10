@@ -19,16 +19,10 @@ public class Parent {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String address;
-    @OneToOne
-    private User user;
-    @OneToMany()
-    private Set<Student> students = new HashSet<>();
-    public void addStudent(Student student){
-        students.add(student);
-        student.setParent(this);
-    }
-    public void removeStudent(Student student){
-        students.remove(student);
-        student.setParent(null);
+    @OneToOne(fetch = FetchType.LAZY)
+    private Student student;
+
+    public Parent(String address) {
+        this.address = address;
     }
 }

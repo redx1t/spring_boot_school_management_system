@@ -22,12 +22,5 @@ public class Session {
 
     @OneToMany
     private Set<ClassRoom> classRooms = new HashSet<>();
-    public void addClassRoom(ClassRoom classRoom){
-        classRooms.add(classRoom);
-        classRoom.setSession(this);
-    }
-    public void removeClassRoom(ClassRoom classRoom){
-        classRooms.remove(classRoom);
-        classRoom.setSession(null);
-    }
+
 }

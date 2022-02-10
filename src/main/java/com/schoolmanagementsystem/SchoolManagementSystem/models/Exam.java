@@ -28,14 +28,7 @@ public class Exam {
     private Staff staff;
     @OneToMany
     private Set<ExamResult> examResults = new HashSet<>();
-    public void addExamResult(ExamResult examResult){
-        examResults.add(examResult);
-        examResult.setExam(this);
-    }
-    public void removeExamResult(ExamResult examResult){
-        examResults.remove(examResult);
-        examResult.setExam(null);
-    }
+
 @Override
     public boolean equals(Object o) {
         if (this == o) return true;

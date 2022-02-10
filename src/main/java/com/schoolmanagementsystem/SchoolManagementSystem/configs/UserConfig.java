@@ -1,10 +1,12 @@
 package com.schoolmanagementsystem.SchoolManagementSystem.configs;
 
+import com.schoolmanagementsystem.SchoolManagementSystem.models.Parent;
 import com.schoolmanagementsystem.SchoolManagementSystem.models.Role;
 import com.schoolmanagementsystem.SchoolManagementSystem.models.Student;
 import com.schoolmanagementsystem.SchoolManagementSystem.models.User;
 import com.schoolmanagementsystem.SchoolManagementSystem.repos.UserRepository;
 import com.schoolmanagementsystem.SchoolManagementSystem.service.ParentService;
+import com.schoolmanagementsystem.SchoolManagementSystem.service.StudentService;
 import com.schoolmanagementsystem.SchoolManagementSystem.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +21,7 @@ import java.time.Month;
 public class UserConfig {
 
     @Bean
-    CommandLineRunner commandLineRunner(UserService userService, ParentService parentService){
+    CommandLineRunner commandLineRunner(UserService userService, ParentService parentService, StudentService studentService){
         return args -> {
             User defaultAdmin = new User(
                     "admin",
@@ -76,10 +78,13 @@ public class UserConfig {
 
 
 
+
             userService.create(defaultAdmin);
             userService.create(defaultTeacher);
             userService.create(defaultBursar);
-            userService.create(defaultParent);
+            Parent parent = parentService.saveParent(new Parent("address"), userService.create(defaultParent));
+            Student student = studentService.createStudent(new Student("first_name", "second_name", LocalDate.of(2003, Month.AUGUST, 20), "kenyan", "male", "christian", "adm_no_123"));
+            parentService.setParentToStudent(parent, student);
             userService.createRole(new Role(null, "ROLE_ADMIN", LocalDateTime.now()));
             userService.createRole(new Role(null, "ROLE_TEACHER", LocalDateTime.now()));
             userService.createRole(new Role(null, "ROLE_BURSAR", LocalDateTime.now()));

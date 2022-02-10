@@ -11,5 +11,5 @@ import java.util.Collection;
 @Repository
 public interface ParentRepository extends JpaRepository<Parent, Long> {
 
-    Parent findByUserId(Long id);
+
 }

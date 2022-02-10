@@ -43,13 +43,13 @@ public class CustomAuthenicationFilter extends UsernamePasswordAuthenticationFil
         // here we would fetch and encrypt and descrypt the secret from somewhere else
         Algorithm algorithm = Algorithm.HMAC256("!@()!#!()()!".getBytes(StandardCharsets.UTF_8));
         String access_token = JWT.create().withSubject(user.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() +10 * 60 * 1000))
+                .withExpiresAt(new Date(System.currentTimeMillis() + 100 * 60 * 1000))
                 .withIssuer(request.getRequestURI().toString()).
                 withClaim("roles",
                         user.getAuthorities().stream().map(GrantedAuthority::getAuthority)
                                 .collect(Collectors.toList())).sign(algorithm);
         String refresh_token = JWT.create().withSubject(user.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 30 * 60 * 1000))
+                .withExpiresAt(new Date(System.currentTimeMillis() + 150 * 60 * 1000))
                 .withIssuer(request.getRequestURI().toString())
                 .sign(algorithm);
 //        response.setHeader("access_token", access_token);

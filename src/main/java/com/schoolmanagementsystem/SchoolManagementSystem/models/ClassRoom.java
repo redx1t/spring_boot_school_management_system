@@ -21,22 +21,15 @@ public class ClassRoom {
     private String name;
     private String abbreviation;
     private Boolean isActive;
-    @OneToOne
+    @ManyToOne
     private Grade grade;
     @ManyToOne
     private Session session;
-    @OneToOne
+    @ManyToOne
     private Staff staff;
     @OneToMany
     private Set<Schedule> schedules = new HashSet<>();
-    public void addSchedule(Schedule schedule){
-        schedules.add(schedule);
-        schedule.setAClass(this);
-    }
-    public void removeSchedule(Schedule schedule){
-        schedules.remove(schedule);
-        schedule.setAClass(null);
-    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -22,14 +22,4 @@ public class Staff {
     private String nationality;
     @OneToOne
     private User user;
-    @OneToMany
-    private Set<Schedule> schedules = new HashSet<>();
-    public void addSchedule(Schedule schedule){
-        schedules.add(schedule);
-        schedule.setStaff(this);
-    }
-    public void removeSchedule(Schedule schedule){
-        schedules.remove(schedule);
-        schedule.setStaff(null);
-    }
 }
