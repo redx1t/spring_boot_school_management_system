@@ -41,14 +41,26 @@ public class TeacherService {
     public ExamType addExamType(ExamType examType){
         return examTypeRepository.save(examType);
     }
+    public ExamType findExamType(Long id){
+        return examTypeRepository.findById(id).get();
+    }
     public Exam addExam(Exam exam){
         return examRepository.save(exam);
+    }
+    public Exam findExam(Long id){
+        return examRepository.findById(id).get();
     }
     public ExamResult addExamResult(ExamResult examResult){
         return examResultRepository.save(examResult);
     }
+    public ExamResult findExamResult(Long id){
+        return examResultRepository.findById(id).get();
+    }
     public Schedule addSchedule(Schedule schedule){
         return scheduleRepository.save(schedule);
+    }
+    public Schedule findSchedule(Long id){
+        return scheduleRepository.findById(id).get();
     }
 
 }

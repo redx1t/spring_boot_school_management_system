@@ -42,6 +42,9 @@ public class ParentService {
         userRepository.save(user);
         return parentcreated;
     }
+    public Parent findParent(Long id){
+        return parentRepository.findById(id).get();
+    }
 
 
 }

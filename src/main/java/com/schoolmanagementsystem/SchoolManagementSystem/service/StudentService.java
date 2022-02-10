@@ -22,4 +22,7 @@ public class StudentService {
     public Student createStudent(Student student){
         return studentRepository.save(student);
     }
+    public Student findStudent(Long id){
+        return studentRepository.findById(id).get();
+    }
 }

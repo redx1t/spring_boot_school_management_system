@@ -22,19 +22,37 @@ public class AdminService {
     public Subject addSubject(Subject subject){
         return subjectRepository.save(subject);
     }
+    public Subject findSubject(Long id){
+        return subjectRepository.findById(id).get();
+    }
     public Setting addSetting(Setting setting){
         return settingRepository.save(setting);
+    }
+    public Setting findSetting(Long id){
+        return settingRepository.findById(id).get();
     }
     public Session addSession(Session session){
         return sessionRepository.save(session);
     }
+    public Session findSession(Long id){
+        return sessionRepository.findById(id).get();
+    }
     public Fee addFee(Fee fee){
         return feeRepository.save(fee);
+    }
+    public Fee findFee(Long id){
+        return feeRepository.findById(id).get();
     }
     public Grade addGrade(Grade grade){
         return gradeRepository.save(grade);
     }
+    public Grade findGrade(Long id){
+        return gradeRepository.findById(id).get();
+    }
     public ClassRoom addClassRoom(ClassRoom classRoom){
         return classRoomRepository.save(classRoom);
+    }
+    public ClassRoom findClassRoom(Long id){
+        return classRoomRepository.findById(id).get();
     }
 }
