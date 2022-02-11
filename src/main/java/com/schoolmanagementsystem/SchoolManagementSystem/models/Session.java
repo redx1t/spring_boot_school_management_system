@@ -26,7 +26,6 @@ public class Session {
         this.isActive = isActive;
     }
 
-    @OneToMany
-    private Set<ClassRoom> classRooms = new HashSet<>();
+
 
 }

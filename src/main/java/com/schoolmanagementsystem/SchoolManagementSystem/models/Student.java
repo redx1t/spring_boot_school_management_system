@@ -27,11 +27,9 @@ public class Student {
     private String religion;
     @Column(unique = true)
     private String adm_no;
-    @OneToOne(fetch = FetchType.LAZY)
-    private ClassRoom aClass;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    private Set<ExamResult> examResults = new HashSet<>();
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
+    @JoinColumn(nullable = true)
+    private ClassRoom classRoom;
 
     public Student(String first_name, String last_name, LocalDate date, String nationality, String gender, String religion, String adm_no) {
         this.first_name = first_name;

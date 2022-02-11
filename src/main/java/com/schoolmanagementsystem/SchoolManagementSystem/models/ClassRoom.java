@@ -1,14 +1,14 @@
 package com.schoolmanagementsystem.SchoolManagementSystem.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Data
@@ -21,14 +21,22 @@ public class ClassRoom {
     private String name;
     private String abbreviation;
     private Boolean isActive;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "grade_id", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private Grade grade;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "session_id", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private Session session;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "staff_id", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private Staff staff;
-    @OneToMany
-    private Set<Schedule> schedules = new HashSet<>();
+
 
     public ClassRoom(String name, String abbreviation, Boolean isActive, Grade grade, Session session, Staff staff) {
         this.name = name;

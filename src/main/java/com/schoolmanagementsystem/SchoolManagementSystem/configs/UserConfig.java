@@ -77,6 +77,10 @@ public class UserConfig {
             Parent parent = parentService.saveParent(new Parent("address"), userService.create(defaultParent));
             Student student = studentService.createStudent(new Student("first_name", "second_name", LocalDate.of(2003, Month.AUGUST, 20), "kenyan", "male", "christian", "adm_no_123"));
             parentService.setParentToStudent(parent, student);
+            Student student1 = studentService.createStudent(new Student("first_name", "second_name", LocalDate.of(2003, Month.AUGUST, 20), "kenyan", "male", "christian", "adm_no_124"));
+            Student student2 = studentService.createStudent(new Student("first_name", "second_name", LocalDate.of(2003, Month.AUGUST, 20), "kenyan", "male", "christian", "adm_no_125"));
+            parentService.setParentToStudent(parent, student1);
+            parentService.setParentToStudent(parent, student2);
             userService.createRole(new Role(null, "ROLE_ADMIN", LocalDateTime.now()));
             userService.createRole(new Role(null, "ROLE_TEACHER", LocalDateTime.now()));
             userService.createRole(new Role(null, "ROLE_BURSAR", LocalDateTime.now()));
@@ -85,12 +89,18 @@ public class UserConfig {
             userService.addRoleToUser("teacher1", "ROLE_TEACHER");
             userService.addRoleToUser("bursar1", "ROLE_BURSAR");
             userService.addRoleToUser("parent1", "ROLE_PARENT");
-            Staff staff = new Staff("staff_id", "teacher", "kenyan");
-            Staff newstaff = teacherService.createStaff(staff, userstaff);
+            Staff staff = adminService.saveStaff(new Staff("staff_id", "teacher", "kenyan"));
+            Staff newstaff = adminService.createStaff(staff, userstaff);
 
             Session session = adminService.addSession(new Session("2021", "1", true));
             Grade grade = adminService.addGrade(new Grade("class 1", "class one description"));
-            ClassRoom classRoom = adminService.addClassRoom(new ClassRoom("name", "abbreviation", true, grade, session, newstaff));
+            ClassRoom classRoom = adminService.addClassRoom(new ClassRoom("class 1", "abbreviation", true, grade, session, newstaff));
+            ClassRoom classRoom1 = adminService.addClassRoom(new ClassRoom("class 2", "abbreviation", true, grade, session, newstaff));
+
+            studentService.assignClassToStudent(student, classRoom);
+            studentService.assignClassToStudent(student1, classRoom1);
+            studentService.assignClassToStudent(student2, classRoom1);
+
             ExamType examType = teacherService.addExamType(new ExamType("Start of Term", "Start of term exams"));
             Exam exam = new Exam("2021 start of term", LocalDate.now(), LocalDateTime.now().toString(), LocalDateTime.now().toString(), true, examType, newstaff, classRoom);
             Exam newexam = teacherService.addExam(exam);

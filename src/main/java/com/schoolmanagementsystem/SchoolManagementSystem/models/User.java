@@ -40,14 +40,8 @@ public class User {
     private Boolean isActive;
     private LocalDateTime created_at;
     private LocalDateTime updated_at;
-    @OneToOne(fetch = FetchType.LAZY)
-        private Parent parent;
-
-    @OneToOne(fetch = FetchType.LAZY)
-        private Staff staff;
-
-        @ManyToMany(fetch = FetchType.EAGER)
-        private Collection<Role> roles = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles = new ArrayList<>();
 
     @Transient
 

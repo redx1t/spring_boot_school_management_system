@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Collection;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -22,22 +24,23 @@ public class TeacherService {
     private final ExamResultRepository examResultRepository;
     private final ScheduleRepository scheduleRepository;
     private final AttendanceRepository attendanceRepository;
+    private final ClassRoomRepository classRoomRepository;
     public Attendance addAttendance(Attendance attendance){
         return attendanceRepository.save(attendance);
+    }
+    public Collection<ClassRoom> listAllClassRooms(){
+        return classRoomRepository.findAll();
+    }
+    public ClassRoom findClassRoom(Long id){
+        return classRoomRepository.findById(id).get();
+    }
+    public Collection<Student> findStudentsByClassRoom(Long id){
+        return studentRepository.findByClassRoomId(id);
     }
     public Attendance findAttendance(Long id){
         return attendanceRepository.findById(id).get();
     }
-    public Staff createStaff(Staff staff, User user){
-        staff.setUser(user);
-        Staff newstaff = staffRepository.save(staff);
-        user.setStaff(newstaff);
-        userRepository.save(user);
-        return newstaff;
-    }
-    public Staff findStaff(Long id){
-        return staffRepository.findById(id).get();
-    }
+
     public ExamType addExamType(ExamType examType){
         return examTypeRepository.save(examType);
     }

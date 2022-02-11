@@ -1,8 +1,11 @@
 package com.schoolmanagementsystem.SchoolManagementSystem.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -19,10 +22,11 @@ public class Subject {
     private String subject;
     private String abbreviation;
     private Boolean isActive;
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "grade_id", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private Grade grade;
-    @OneToMany
-    private Set<Schedule> schedules = new HashSet<>();
 
     public Subject(String subject, String abbreviation, Boolean isActive, Grade grade) {
         this.subject = subject;

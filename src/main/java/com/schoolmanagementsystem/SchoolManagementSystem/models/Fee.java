@@ -1,8 +1,11 @@
 package com.schoolmanagementsystem.SchoolManagementSystem.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -19,11 +22,17 @@ public class Fee {
     private String currency;
     private Boolean isActive;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "session_id", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private Session session;
 
-    @ManyToOne
-    private ClassRoom aClass;
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "classroom_id", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private ClassRoom classRoom;
 
     public Fee(String fee_name, Integer amount, String currency, Boolean isActive, Session session, ClassRoom aClass) {
         this.fee_name = fee_name;
@@ -31,7 +40,7 @@ public class Fee {
         this.currency = currency;
         this.isActive = isActive;
         this.session = session;
-        this.aClass = aClass;
+        this.classRoom = aClass;
     }
 
     public Fee(String fee_name, Integer amount, String currency, Boolean isActive) {

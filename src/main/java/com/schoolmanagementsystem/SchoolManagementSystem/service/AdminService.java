@@ -19,6 +19,8 @@ public class AdminService {
     private final FeeRepository feeRepository;
     private final SettingRepository settingRepository;
     private final SubjectRepository subjectRepository;
+    private final StaffRepository staffRepository;
+    private final UserRepository userRepository;
     public Subject addSubject(Subject subject){
         return subjectRepository.save(subject);
     }
@@ -54,5 +56,17 @@ public class AdminService {
     }
     public ClassRoom findClassRoom(Long id){
         return classRoomRepository.findById(id).get();
+    }
+
+    public Staff saveStaff(Staff staff){
+        return staffRepository.save(staff);
+    }
+    public Staff createStaff(Staff staff, User user){
+        staff.setUser(user);
+        staffRepository.save(staff);
+        return staff;
+    }
+    public Staff findStaff(Long id){
+        return staffRepository.findById(id).get();
     }
 }

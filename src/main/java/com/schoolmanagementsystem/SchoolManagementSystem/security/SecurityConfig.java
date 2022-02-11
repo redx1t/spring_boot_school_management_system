@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         //allow unauth users to access login page
-        http.authorizeRequests().antMatchers("/api/login/**", "/api/v1/refresh/token/**").permitAll();
+        http.authorizeRequests().antMatchers("/api/login/**", "/api/v1/users/refresh/**").permitAll();
         // authenication based on roles
         http.authorizeRequests().antMatchers("/api/v1/users/user/**").hasAnyAuthority("ROLE_PARENT","ROLE_BURSAR", "ROLE_TEACHER");
         http.authorizeRequests().antMatchers("/api/v1/bursar/**").hasAnyAuthority("ROLE_BURSAR");

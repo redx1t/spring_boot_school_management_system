@@ -24,8 +24,8 @@ public class ParentService {
     private final StudentRepository studentRepository;
     private final UserRepository userRepository;
     public Student getParentStudents(Long id){
-        User user = userRepository.findById(id).get();
-        return user.getParent().getStudent();
+        Parent parent = parentRepository.findByUserId(id);
+        return parent.getStudent();
         //Parent parent = parentRepository.getById(user.getParent().getId());
         //return parent.getStudents();
     }
@@ -37,10 +37,8 @@ public class ParentService {
     }
 
     public Parent saveParent(Parent parent, User user){
-        Parent parentcreated = parentRepository.save(parent);
-        user.setParent(parentcreated);
-        userRepository.save(user);
-        return parentcreated;
+        parent.setUser(user);
+        return parentRepository.save(parent);
     }
     public Parent findParent(Long id){
         return parentRepository.findById(id).get();

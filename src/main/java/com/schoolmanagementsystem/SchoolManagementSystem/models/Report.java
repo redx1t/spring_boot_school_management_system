@@ -19,7 +19,7 @@ public class Report {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String comments;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     private Set<ExamResult> examResults = new HashSet<>();
 
     public Report(String comments) {

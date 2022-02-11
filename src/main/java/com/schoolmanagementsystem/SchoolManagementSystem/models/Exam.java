@@ -1,8 +1,11 @@
 package com.schoolmanagementsystem.SchoolManagementSystem.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -22,14 +25,18 @@ public class Exam {
     private String start_time;
     private String end_time;
     private Boolean status;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "exam_type_id", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private ExamType examType;
     @OneToOne
     private Staff staff;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "classroom_id", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private ClassRoom classRoom;
-    @OneToMany
-    private Set<ExamResult> examResults = new HashSet<>();
 
     public Exam(String name, LocalDate start_date, String start_time, String end_time, Boolean status, ExamType examType, Staff staff, ClassRoom classRoom) {
         this.name = name;

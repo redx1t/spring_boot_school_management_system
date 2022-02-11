@@ -1,8 +1,11 @@
 package com.schoolmanagementsystem.SchoolManagementSystem.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -19,11 +22,21 @@ public class Schedule {
     private String start_time;
     private String end_time;
     private Boolean status;
-    @ManyToOne
-    private ClassRoom aClass;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "classroom_id", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private ClassRoom classRoom;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "subject_id", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private Subject subject;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "staff_id", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private Staff staff;
 
     public Schedule(LocalDate date, String start_time, String end_time, Boolean status, ClassRoom aClass, Subject subject, Staff staff) {
@@ -31,7 +44,7 @@ public class Schedule {
         this.start_time = start_time;
         this.end_time = end_time;
         this.status = status;
-        this.aClass = aClass;
+        this.classRoom = aClass;
         this.subject = subject;
         this.staff = staff;
     }
