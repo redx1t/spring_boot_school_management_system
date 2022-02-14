@@ -50,8 +50,8 @@ public class UserController {
         );
 
     }
-    @GetMapping(path = "/page/{page}")
-    public ResponseEntity<Response> getUsers(@PathVariable("page") int page)
+    @GetMapping(path = "/pages")
+    public ResponseEntity<Response> getUsers(@RequestParam(value = "page") int page)
     {
         return ResponseEntity.ok(
                 Response.builder()

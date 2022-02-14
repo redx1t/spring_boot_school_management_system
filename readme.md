@@ -6,9 +6,9 @@
 
 git pull into your working folder. 
 
-reload dependancies via maven, environment tested in: java 11 version
+reload dependencies via maven, environment tested in: java 11 version
 
-make sure applications.properties has the right credetials for DB as well as the postgres version
+make sure applications.properties has the right credentials for DB as well as the postgres version
 
 <!- I am using POSTGRES with a database called school_management_system -!!>
 
@@ -21,7 +21,7 @@ git pull from and follow the instruction. ensure that it runs on port 8080 on se
 
 remember to run npm commands in the readme.md
 
-You can configure both in the configs folder in the next js app or configure the cors on the security/securityconfig class
+You can configure both in the configs' folder in the next js app or configure the CORS on the security/securityconfig class
 
 ## PROBLEM DEFINITION
 
@@ -29,7 +29,7 @@ Learning institution management is key to the success of both the learners, staf
 
 Currently, most parts of the institution are managed manually using the old filing system. (reality)
 
-The incremental filing and loss associated with manual filing is high. This leads to both high financial cost, as well as broken view of the institution running. (consequences)
+The incremental filing and loss associated with manual filing is high. This leads to both high financial cost, and broken view of the institution running. (consequences)
 
 To reduce this, save cost, and ensure efficiency, a school management system should be introduced. This way, managers, staff and parents can have a centralized manner of performing roles digitally. (proposal)
 
@@ -261,7 +261,7 @@ set up custom authenication and authorisation using SpringBoot Security
 
  ### FRONT END - NEXT JS
 
- Set up token authenication and authorisation
+ Set up token authentication and authorisation
 
  Build components
 
@@ -288,7 +288,7 @@ Understanding system architecture
 
 https://www.youtube.com/watch?v=ScbSrUSbumo 
 
-Key words, precisely describing 
+Keywords, precisely describing 
 
 dont miss out all the functions
 
@@ -361,9 +361,9 @@ https://www.youtube.com/watch?v=OcB1NKX_kYw
 
 https://www.youtube.com/watch?v=_07NtoK-Kns
 
-Its all about making systems simple. make it simple
+It's all about making systems simple. make it simple
 
-Consider qualities: performance, availability, usability, scalibility, safety
+Consider qualities: performance, availability, usability, scalability, safety
 
 Technical 
 
