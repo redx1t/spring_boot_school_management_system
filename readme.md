@@ -231,16 +231,27 @@ ROLE BASED ACCESS TO CRUD
 ## APPROACH
 
 ### BACKEND USING SPRING BOOT
+
 set up db connection
+
 set up models
+
 set up corresponding JPA repository
+
 set up services
+
     - StudentService
+
     - ParentService
+
     - TeacherService
+
     - AdminService
+
 set up seeding DB CommandLiner
+
 set up controllers for the rest api
+
 set up custom authenication and authorisation using SpringBoot Security
 
 <!-- Test run and debug through each step
@@ -251,14 +262,19 @@ set up custom authenication and authorisation using SpringBoot Security
  ### FRONT END - NEXT JS
 
  Set up token authenication and authorisation
+
  Build components
+
  Set up pages based on user roles
  
  Test while building
 
 ### Things not implemented
+
 Secure token for algorithm encryption
+
 Brute force stop by checking number of unsuccessful login attempts
+
 Factors such as refactoring. Some repeated code
 
 
@@ -285,14 +301,19 @@ Example: Refrigerator
 Food
 
 Goal - reduce spoilage rate
+
 Processes - Chilling, radiate, dry, preserving, marinating, smoking, vacuum packing the food or eating it :)
 
 Form - its function } makes up the device
 
 Always consider the elements of the system. for a fridge, its 
+
 food
+
 support structure
+
 heat load
+
 operator
 
 Process is
@@ -300,28 +321,42 @@ Process is
 Take the requirement, understand the breakdown the system
 
 Factors such as 
+
 security
+
 performance
+
 resource utilization
 
 NASA Standards
+
 - decomposition
+
     - understanding of technical requirements
+
     - conversion of the technical breakdown into models
+
 Logical Decompostion
+
 - input
+
 - activities
+
 - output
 
 Does involve factors such as 
+
 - Brainstorming
+
     - Should have a driving question
 
 
 https://www.youtube.com/watch?v=OcB1NKX_kYw
 
 - structural software system i.e. 
+
     - blueprint for building a software
+
     - breakdown components, relationship btwn components, data & algorithm structures,  data flow, control flow, dependancies etc
 
 https://www.youtube.com/watch?v=_07NtoK-Kns
@@ -331,14 +366,20 @@ Its all about making systems simple. make it simple
 Consider qualities: performance, availability, usability, scalibility, safety
 
 Technical 
+
 - Monolithic
+
 - Layed
+
 - Microservices
 
 
 TASK 
 
 SCHOOL MANAGEMENT SYSTEM
+
 - USAGE 
+
 - USERS
+
 - ENVIRONMENT
