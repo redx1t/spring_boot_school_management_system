@@ -5,10 +5,7 @@ import com.schoolmanagementsystem.SchoolManagementSystem.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
@@ -32,8 +29,9 @@ public class TeacherController {
                         .build()
         );
     }
-    @GetMapping(path = "/classroom/get/{classroom}")
-    public ResponseEntity<Response> getUsers(@PathVariable("classroom") int classroom)
+    // modify this to take get parameters or post request
+    @GetMapping(path = "/classroom/get")
+    public ResponseEntity<Response> getUsers(@RequestParam(value = "classroom") int classroom)
     {
         return ResponseEntity.ok(
                 Response.builder()
@@ -46,8 +44,9 @@ public class TeacherController {
         );
 
     }
-    @GetMapping(path = "/classroom/students/{classroom}")
-    public ResponseEntity<Response> getStudentsByClassRoom(@PathVariable("classroom") int classroom)
+    // modify to take get or post request
+    @GetMapping(path = "/classroom/students")
+    public ResponseEntity<Response> getStudentsByClassRoom(@RequestParam(value = "classroom") int classroom)
     {
         return ResponseEntity.ok(
                 Response.builder()
