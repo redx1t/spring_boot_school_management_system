@@ -20,8 +20,8 @@ public class ParentController {
     private final ParentService parentService;
     private final UserService userService;
     private final StudentService studentService;
-    @GetMapping(path = "/students/parent")
-    public ResponseEntity<Response> getStudents(@RequestParam(value = "user_id", required = true) int user_id)
+    @GetMapping(path = "/students/parent/{user_id}")
+    public ResponseEntity<Response> getStudents(@PathVariable(value = "user_id", required = true) int user_id)
     {
         return ResponseEntity.ok(
                 Response.builder()
@@ -33,8 +33,20 @@ public class ParentController {
                         .build()
         );
     }
-    @GetMapping(path = "/student")
-    public ResponseEntity<Response> getExamResults(@RequestParam(value = "id", required = true) int id){
+    @GetMapping(path = "/student/{id}")
+    public ResponseEntity<Response> getStudent(@PathVariable(value = "id", required = true) int id){
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timeStamp(LocalDateTime.now())
+                        .data(Map.of("student", studentService.findStudent((long) id)))
+                        .message("exam results retrieved")
+                        .status(HttpStatus.OK)
+                        .statusCode(HttpStatus.OK.value())
+                        .build()
+        );
+    }
+    @GetMapping(path = "/exam_results/student/{id}")
+    public ResponseEntity<Response> getExamResults(@PathVariable(value = "id", required = true) int id){
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(LocalDateTime.now())

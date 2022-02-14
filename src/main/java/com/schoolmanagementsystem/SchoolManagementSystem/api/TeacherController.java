@@ -30,8 +30,8 @@ public class TeacherController {
         );
     }
     // modify this to take get parameters or post request
-    @GetMapping(path = "/classroom/get")
-    public ResponseEntity<Response> getUsers(@RequestParam(value = "classroom") int classroom)
+    @GetMapping(path = "/classroom/get/{classroom}")
+    public ResponseEntity<Response> getUsers(@PathVariable(value = "classroom") int classroom)
     {
         return ResponseEntity.ok(
                 Response.builder()
@@ -45,8 +45,8 @@ public class TeacherController {
 
     }
     // modify to take get or post request
-    @GetMapping(path = "/classroom/students")
-    public ResponseEntity<Response> getStudentsByClassRoom(@RequestParam(value = "classroom") int classroom)
+    @GetMapping(path = "/classroom/students/{classroom}")
+    public ResponseEntity<Response> getStudentsByClassRoom(@PathVariable(value = "classroom") int classroom)
     {
         return ResponseEntity.ok(
                 Response.builder()

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -42,7 +43,9 @@ public class Student {
     }
 
 
-
+    public Integer getAge() {
+        return Period.between(date, LocalDate.now()).getYears();
+    }
 
 
 

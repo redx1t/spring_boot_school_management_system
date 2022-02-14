@@ -25,17 +25,15 @@ public class Exam {
     private String start_time;
     private String end_time;
     private Boolean status;
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "exam_type_id", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private ExamType examType;
     @OneToOne
     private Staff staff;
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "classroom_id", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private ClassRoom classRoom;
 
     public Exam(String name, LocalDate start_date, String start_time, String end_time, Boolean status, ExamType examType, Staff staff, ClassRoom classRoom) {

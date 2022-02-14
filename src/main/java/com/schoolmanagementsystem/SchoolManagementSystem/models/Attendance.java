@@ -25,17 +25,14 @@ public class Attendance {
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "student_id", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private Student student;
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "classroom_id", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private ClassRoom classRoom;
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "staff_id", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private Staff staff;
 
     public Attendance(LocalDate date, boolean status, String remarks, Student student, ClassRoom classRoom, Staff staff) {

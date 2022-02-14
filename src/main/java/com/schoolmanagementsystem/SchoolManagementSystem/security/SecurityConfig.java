@@ -41,11 +41,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //allow unauth users to access login page
         http.authorizeRequests().antMatchers("/api/login/**", "/api/v1/users/refresh/**").permitAll();
         // authenication based on roles
-        http.authorizeRequests().antMatchers("/api/v1/users/user/**").hasAnyAuthority("ROLE_PARENT","ROLE_BURSAR", "ROLE_TEACHER");
-        http.authorizeRequests().antMatchers("/api/v1/bursar/**").hasAnyAuthority("ROLE_BURSAR");
-        http.authorizeRequests().antMatchers("/api/v1/parents/**").hasAnyAuthority("ROLE_PARENT");
-        http.authorizeRequests().antMatchers("/api/v1/teachers/**").hasAnyAuthority("ROLE_TEACHER");
-        http.authorizeRequests().antMatchers("/api/v1/**").hasAnyAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers("/api/v1/users/user/**").hasAnyAuthority("ROLE_PARENT","ROLE_BURSAR", "ROLE_TEACHER", "ROLE_ADMIN");
+        http.authorizeRequests().antMatchers("/api/v1/bursar/**").hasAnyAuthority("ROLE_BURSAR", "ROLE_ADMIN");
+        http.authorizeRequests().antMatchers("/api/v1/parents/**").hasAnyAuthority("ROLE_PARENT", "ROLE_ADMIN", "ROLE_TEACHER");
+        http.authorizeRequests().antMatchers("/api/v1/teachers/**").hasAnyAuthority("ROLE_TEACHER", "ROLE_ADMIN");
+        http.authorizeRequests().antMatchers("/api/v1/admin/**").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenicationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);

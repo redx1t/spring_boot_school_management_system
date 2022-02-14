@@ -75,10 +75,10 @@ public class UserConfig {
             User userstaff = userService.create(defaultTeacher);
             userService.create(defaultBursar);
             Parent parent = parentService.saveParent(new Parent("address"), userService.create(defaultParent));
-            Student student = studentService.createStudent(new Student("first_name", "second_name", LocalDate.of(2003, Month.AUGUST, 20), "kenyan", "male", "christian", "adm_no_123"));
+            Student student = studentService.createStudent(new Student("yvonne", "odhiambo", LocalDate.of(2003, Month.AUGUST, 20), "kenyan", "male", "christian", "12332"));
             parentService.setParentToStudent(parent, student);
-            Student student1 = studentService.createStudent(new Student("first_name", "second_name", LocalDate.of(2003, Month.AUGUST, 20), "kenyan", "male", "christian", "adm_no_124"));
-            Student student2 = studentService.createStudent(new Student("first_name", "second_name", LocalDate.of(2003, Month.AUGUST, 20), "kenyan", "male", "christian", "adm_no_125"));
+            Student student1 = studentService.createStudent(new Student("victor", "muthomi", LocalDate.of(2003, Month.AUGUST, 20), "kenyan", "male", "christian", "12322"));
+            Student student2 = studentService.createStudent(new Student("james", "wagure", LocalDate.of(2003, Month.AUGUST, 20), "kenyan", "male", "christian", "12700"));
             parentService.setParentToStudent(parent, student1);
             parentService.setParentToStudent(parent, student2);
             userService.createRole(new Role(null, "ROLE_ADMIN", LocalDateTime.now()));
