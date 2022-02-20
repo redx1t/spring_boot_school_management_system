@@ -25,6 +25,10 @@ You can configure both in the configs' folder in the next js app or configure th
 
 Some of the pictures from the rendering of next js front end can be found at: https://drive.google.com/drive/folders/1qGFygwS9lbSowxMCGalx7I_9GyPdC-iG?usp=sharing
 
+
+https://github.com/redx1t/school_management_system_front_end
+
+
 ## PROBLEM DEFINITION
 
 Learning institution management is key to the success of both the learners, staff, and the owners. (ideal)
